@@ -7,6 +7,7 @@ apply from: '../android_library.gradle'
 
 dependencies {
     api net.values()
+    implementation mmkv.values()
     testImplementation testDependancies.values()
     androidTestImplementation androidTestDependancies.values()
 }

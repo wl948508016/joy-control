@@ -4,11 +4,16 @@ ext {
             compileSdk       : 32,
             targetSdk        : 30,
             minSdk           : 23,
-            versionCode      : 2,
-            versionName      : "1.0.1"
+            versionCode      : 1,
+            versionName      : "1.0.0"
     ]
 
     future_net = '1.0.1-joy'
+    mmkv_version = '1.2.9'
+
+    mmkv = [
+            mmkv: "com.tencent:mmkv-static:${mmkv_version}",
+    ]
 
     net = [
             FutureNet: "com.github.wl948508016.future-net:net:${future_net}"

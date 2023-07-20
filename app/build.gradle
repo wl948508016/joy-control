@@ -15,7 +15,7 @@ android {
         targetSdk androidVersions.targetSdk
         versionCode androidVersions.versionCode
         versionName androidVersions.versionName
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true

@@ -3,7 +3,7 @@ package com.bdtd.joy.control.retrofit
 import android.text.TextUtils
 import com.bdtd.joy.control.model.Constants
 import com.bdtd.joy.control.model.OverrideModel
-import com.future.components.client.utils.getString
+import com.bdtd.joy.control.utils.getString
 import com.future.components.net.model.BaseResponse
 import okhttp3.RequestBody
 import retrofit2.http.Body
