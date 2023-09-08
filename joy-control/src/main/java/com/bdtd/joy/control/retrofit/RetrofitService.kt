@@ -28,8 +28,8 @@ interface RetrofitService {
      * .build();
      */
     companion object {
-        var SERVER_URL_TEST = "https://10.40.138.157:11111" // 测试服务器地址
-        var SERVER_URL = "https://10.40.138.157:11111" // 正式服务器地址
+        private var SERVER_URL_TEST = "https://10.40.138.157:11111" // 测试服务器地址
+        private var SERVER_URL = "https://10.40.138.157:11111" // 正式服务器地址
 
         fun getServerUrl(): String {
             val url = getString(Constants.URL_TAG)

@@ -1,4 +1,4 @@
-package com.bdtd.joy.control
+package com.bdtd.joy.control.helper
 
 import com.bdtd.joy.control.manager.JoyManager
 import com.bdtd.joy.control.model.Constants.GROUP_SIDE_SHIELD_EXT
@@ -149,7 +149,7 @@ object JoyHelper {
       * @CreateDate:     2023/4/26 14:45
      */
     fun spragControl(viewModel:BaseViewModel,support: Int,switch:Boolean, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}){
-        JoyManager.prsControl(viewModel,support,if (switch) SINGLE_SOLENOID_SPRAG_EXT else SINGLE_SOLENOID_SPRAG_RET,-1,actionSuccess, actionError)
+        JoyManager.prsControl(viewModel,support,if (switch) SINGLE_SOLENOID_SPRAG_EXT else SINGLE_SOLENOID_SPRAG_RET,-1,ConfigHelper.getSpragTimeout(),actionSuccess, actionError)
     }
 
     /**
@@ -160,7 +160,7 @@ object JoyHelper {
      * @CreateDate:     2023/4/26 14:45
      */
     fun spragBankControl(viewModel:BaseViewModel,support: Int,switch:Boolean, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}){
-        JoyManager.prsBankControl(viewModel,support,if (switch) GROUP_SOLENOID_SPRAG_EXT else GROUP_SOLENOID_SPRAG_RET,-1,actionSuccess, actionError)
+        JoyManager.prsBankControl(viewModel,support,if (switch) GROUP_SOLENOID_SPRAG_EXT else GROUP_SOLENOID_SPRAG_RET,-1,ConfigHelper.getSpragTimeout(),actionSuccess, actionError)
     }
 
     /**
@@ -171,7 +171,7 @@ object JoyHelper {
      * @CreateDate:     2023/4/26 14:45
      */
     fun columnControl(viewModel:BaseViewModel,support: Int,switch:Boolean, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}) {
-        JoyManager.prsControl(viewModel,support,if(switch) SINGLE_SOLENOID_SET else SINGLE_SOLENOID_LOWER,-1,actionSuccess, actionError)
+        JoyManager.prsControl(viewModel,support,if(switch) SINGLE_SOLENOID_SET else SINGLE_SOLENOID_LOWER,-1,ConfigHelper.getColumnTimeout(),actionSuccess, actionError)
     }
 
     /**
@@ -183,7 +183,7 @@ object JoyHelper {
      */
     fun columnBankControl(viewModel:BaseViewModel,support: Int,switch:Boolean, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}) {
         when(switch){
-            true->JoyManager.prsBankControl(viewModel,support,GROUP_SOLENOID_SET,-1,actionSuccess, actionError)
+            true->JoyManager.prsBankControl(viewModel,support,GROUP_SOLENOID_SET,-1,ConfigHelper.getColumnTimeout(),actionSuccess, actionError)
             else ->viewModel.postMessage("成组无法立柱降")
         }
     }
@@ -196,7 +196,7 @@ object JoyHelper {
      * @CreateDate:     2023/4/26 14:45
      */
     fun baseControl(viewModel:BaseViewModel,support: Int,switch:Boolean, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}){
-        JoyManager.prsControl(viewModel,support,if(switch) SINGLE_SOLENOID_BASE_LIFT else SINGLE_SOLENOID_ADVANCE,-1,actionSuccess, actionError)
+        JoyManager.prsControl(viewModel,support,if(switch) SINGLE_SOLENOID_BASE_LIFT else SINGLE_SOLENOID_ADVANCE,-1,ConfigHelper.getBaseTimeout(),actionSuccess, actionError)
     }
 
     /**
@@ -208,7 +208,7 @@ object JoyHelper {
      */
     fun baseBankControl(viewModel:BaseViewModel,support: Int,switch:Boolean, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}){
         when(switch){
-            false -> JoyManager.prsBankControl(viewModel,support,GROUP_SOLENOID_ADVANCE,-1,actionSuccess, actionError)
+            false -> JoyManager.prsBankControl(viewModel,support,GROUP_SOLENOID_ADVANCE,-1,ConfigHelper.getBaseTimeout(),actionSuccess, actionError)
             else-> viewModel.postMessage("成组无法抬底")
         }
     }
@@ -221,7 +221,7 @@ object JoyHelper {
      * @CreateDate:     2023/5/19 16:57
      */
     fun sideShieldControl(viewModel:BaseViewModel,support: Int,switch:Boolean, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}){
-        JoyManager.prsControl(viewModel,support,if(switch) SINGLE_SIDE_SHIELD_EXT else SINGLE_SIDE_SHIELD_RET,-1,actionSuccess, actionError)
+        JoyManager.prsControl(viewModel,support,if(switch) SINGLE_SIDE_SHIELD_EXT else SINGLE_SIDE_SHIELD_RET,-1,ConfigHelper.getSideShieldTimeout(),actionSuccess, actionError)
     }
 
     /**
@@ -232,7 +232,7 @@ object JoyHelper {
      * @CreateDate:     2023/5/19 16:57
      */
     fun sideShieldBankControl(viewModel:BaseViewModel,support: Int,switch:Boolean, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}){
-        JoyManager.prsBankControl(viewModel,support,if(switch) GROUP_SIDE_SHIELD_EXT else GROUP_SIDE_SHIELD_RET,-1,actionSuccess, actionError)
+        JoyManager.prsBankControl(viewModel,support,if(switch) GROUP_SIDE_SHIELD_EXT else GROUP_SIDE_SHIELD_RET,-1,ConfigHelper.getSideShieldTimeout(),actionSuccess, actionError)
     }
 
     /**
@@ -242,7 +242,7 @@ object JoyHelper {
      * @CreateDate:     2023/5/19 16:57
      */
     fun pushControl(viewModel:BaseViewModel,support: Int, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}){
-        JoyManager.prsControl(viewModel,support,SINGLE_SOLENOID_PUSH,-1,actionSuccess, actionError)
+        JoyManager.prsControl(viewModel,support,SINGLE_SOLENOID_PUSH,-1,ConfigHelper.getPushTimeout(),actionSuccess, actionError)
     }
 
     /**
@@ -252,7 +252,7 @@ object JoyHelper {
      * @CreateDate:     2023/5/19 16:57
      */
     fun pushBankControl(viewModel:BaseViewModel,support: Int, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}){
-        JoyManager.prsBankControl(viewModel,support,GROUP_SOLENOID_PUSH,-1,actionSuccess, actionError)
+        JoyManager.prsBankControl(viewModel,support,GROUP_SOLENOID_PUSH,-1,ConfigHelper.getPushTimeout(),actionSuccess, actionError)
     }
 
     /**
@@ -262,7 +262,7 @@ object JoyHelper {
      * @CreateDate:     2023/5/19 16:57
      */
     fun waterCurtainControl(viewModel:BaseViewModel,support: Int, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}){
-        JoyManager.prsControl(viewModel,support,SINGLE_SOLENOID_WATER_CURTAIN,-1,actionSuccess, actionError)
+        JoyManager.prsControl(viewModel,support,SINGLE_SOLENOID_WATER_CURTAIN,-1,ConfigHelper.getDefaultTimeout(),actionSuccess, actionError)
     }
 
     /**
@@ -272,7 +272,7 @@ object JoyHelper {
      * @CreateDate:     2023/5/19 16:57
      */
     fun waterCurtainBankControl(viewModel:BaseViewModel,support: Int, actionSuccess:() -> Unit = {}, actionError:(Int) -> Unit = {}){
-        JoyManager.prsBankControl(viewModel,support,GROUP_SOLENOID_WATER_CURTAIN,-1,actionSuccess, actionError)
+        JoyManager.prsBankControl(viewModel,support,GROUP_SOLENOID_WATER_CURTAIN,-1,ConfigHelper.getDefaultTimeout(),actionSuccess, actionError)
     }
 
     /**

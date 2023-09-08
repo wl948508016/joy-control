@@ -11,15 +11,6 @@ object Constants {
     const val URL_TAG="URL_TAG"
 
     /**
-     * 新文档的覆盖标记
-     */
-    const val OVERRIDE_DIR_SOL = "dirsol" // 单控
-    const val OVERRIDE_DIR_TEMP = "dirtemp" // 模板控制
-    const val OVERRIDE_BANK_SOL = "banksol" // 成组控制
-    const val OVERRIDE_ERROR_CODE_LOWER = 9 // Too many adjacent lowers
-    const val OVERRIDE_ERROR_CODE_LOCATION = 10 // shearer at location
-
-    /**
      * 新文档的单控电磁阀
      */
     const val SINGLE_SOLENOID_SPRAG_EXT = "sprag_ext" // 互帮板升
@@ -50,4 +41,14 @@ object Constants {
      * 模板控制电磁阀
      */
     const val TEMPLATE_SOLENOID_LAS = "las" // 降拉升
+
+    /**
+     * 间隔时长
+     */
+    const val DEFAULT_TIMEOUT = "DEFAULT_TIMEOUT" // 默认时长
+    const val SPRAG_TIMEOUT = "SPRAG_TIMEOUT" // 护帮板时长
+    const val SIDE_SHIELD_TIMEOUT = "SIDE_SHIELD_TIMEOUT" // 侧护板时长
+    const val COLUMN_TIMEOUT = "COLUMN_TIMEOUT" // 立柱时长
+    const val BASE_TIMEOUT = "BASE_TIMEOUT" // 底座时长
+    const val PUSH_TIMEOUT = "PUSH_TIMEOUT" // 推溜时长
 }

@@ -9,6 +9,7 @@ import com.future.components.net.NetworkHelper
 import com.future.components.net.exception.NetException
 import com.future.components.net.ext.request
 import com.future.components.net.utils.RequestBodyUtils
+import java.util.concurrent.TimeUnit
 
 /**
  *
@@ -664,16 +665,16 @@ internal object JoyManager {
      * @Author:         future
      * @param           support 支架号
      * @param           solenoid 电磁阀ID
-     * @param           timeout 持续时间
+     * @param           timeout 持续时间 (0~20s)
      * @param           ovrride 覆盖码
      * @CreateDate:     2023/5/11 10:44
      */
-    fun prsControl(viewModel: BaseViewModel, support: Int, solenoid: String, ovrride: Int, actionSuccess: () -> Unit, actionError: (Int) -> Unit = {}) {
+    fun prsControl(viewModel: BaseViewModel, support: Int, solenoid: String, ovrride: Int,timeout:String, actionSuccess: () -> Unit, actionError: (Int) -> Unit = {}) {
         if(single) return
         val hashMap = HashMap<String, Any>()
         hashMap["support"] = support
         hashMap["solenoid"] = solenoid
-        hashMap["timeout"] = 1000
+        hashMap["timeout"] = convertTimeout(timeout)
         hashMap["ovrride"] = ovrride
         val requestBody = RequestBodyUtils.createRequestBody(hashMap)
         viewModel.apply {
@@ -780,12 +781,12 @@ internal object JoyManager {
      * @param           ovrride 覆盖码
      * @CreateDate:     2023/5/11 10:44
      */
-    fun prsBankControl(viewModel: BaseViewModel, support: Int, solenoid: String, ovrride: Int, actionSuccess: () -> Unit, actionError: (Int) -> Unit = {}) {
+    fun prsBankControl(viewModel: BaseViewModel, support: Int, solenoid: String, ovrride: Int,timeout:String, actionSuccess: () -> Unit, actionError: (Int) -> Unit = {}) {
         if(single) return
         val hashMap = HashMap<String, Any>()
         hashMap["support"] = support
         hashMap["solenoid"] = solenoid
-        hashMap["timeout"] = 1000
+        hashMap["timeout"] = convertTimeout(timeout)
         hashMap["ovrride"] = ovrride
         val requestBody = RequestBodyUtils.createRequestBody(hashMap)
         viewModel.apply {
@@ -926,5 +927,10 @@ internal object JoyManager {
             postMessage(res)
             actionSuccess.invoke()
         }
+    }
+
+    private fun convertTimeout(timeout: String):Int{
+        val timeoutInt = timeout.toInt()*1000
+        return if(timeoutInt>20000) 20000 else timeoutInt
     }
 }
