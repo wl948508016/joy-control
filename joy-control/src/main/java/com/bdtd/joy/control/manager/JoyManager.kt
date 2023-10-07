@@ -9,7 +9,6 @@ import com.future.components.net.NetworkHelper
 import com.future.components.net.exception.NetException
 import com.future.components.net.ext.request
 import com.future.components.net.utils.RequestBodyUtils
-import java.util.concurrent.TimeUnit
 
 /**
  *

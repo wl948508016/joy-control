@@ -18,11 +18,29 @@ import com.bdtd.joy.control.utils.pushString
 object ConfigHelper {
 
     /**
+     * 更新整体执行时长
+     * @param default 默认执行时间
+     * @param sprag 护帮板
+     * @param sideShield 侧护板
+     * @param column 立柱
+     * @param base 底座
+     * @param push 推溜
+     */
+    fun updateConfigTimeout(default:String, sprag:String, sideShield:String, column:String, base:String, push:String){
+        updateDefaultTimeout(default)
+        updateSpragTimeout(sprag)
+        updateSideShieldTimeout(sideShield)
+        updateColumnTimeout(column)
+        updateBaseTimeout(base)
+        updatePushTimeout(push)
+    }
+
+    /**
      * 更新默认执行时长
      * @param string 时长
      */
-    fun updateDefaultTimeout(string: String){
-        if(string.isEmpty()) return
+    private fun updateDefaultTimeout(string: String){
+        if(string.isEmpty() || string == "0") return
         pushString(DEFAULT_TIMEOUT,string)
     }
 
@@ -37,8 +55,8 @@ object ConfigHelper {
      * 更新护帮板执行时长
      * @param string 时长
      */
-    fun updateSpragTimeout(string: String){
-        if(string.isEmpty()) return
+    private fun updateSpragTimeout(string: String){
+        if(string.isEmpty() || string == "0") return
         pushString(SPRAG_TIMEOUT,string)
     }
 
@@ -53,8 +71,8 @@ object ConfigHelper {
      * 更新侧护板执行时长
      * @param string 时长
      */
-    fun updateSideShieldTimeout(string: String){
-        if(string.isEmpty()) return
+    private fun updateSideShieldTimeout(string: String){
+        if(string.isEmpty() || string == "0") return
         pushString(SIDE_SHIELD_TIMEOUT,string)
     }
 
@@ -69,8 +87,8 @@ object ConfigHelper {
      * 更新立柱执行时长
      * @param string 时长
      */
-    fun updateColumnTimeout(string: String){
-        if(string.isEmpty()) return
+    private fun updateColumnTimeout(string: String){
+        if(string.isEmpty() || string == "0") return
         pushString(COLUMN_TIMEOUT,string)
     }
 
@@ -82,16 +100,16 @@ object ConfigHelper {
     }
 
     /**
-     * 更新立柱执行时长
+     * 更新底座执行时长
      * @param string 时长
      */
-    fun updateBaseTimeout(string: String){
-        if(string.isEmpty()) return
+    private fun updateBaseTimeout(string: String){
+        if(string.isEmpty() || string == "0") return
         pushString(BASE_TIMEOUT,string)
     }
 
     /**
-     * 获取立柱执行时长
+     * 获取底座执行时长
      */
     fun getBaseTimeout():String{
         return getString(BASE_TIMEOUT).ifEmpty { getDefaultTimeout() }
@@ -101,8 +119,8 @@ object ConfigHelper {
      * 更新推溜执行时长
      * @param string 时长
      */
-    fun updatePushTimeout(string: String){
-        if(string.isEmpty()) return
+    private fun updatePushTimeout(string: String){
+        if(string.isEmpty() || string == "0") return
         pushString(PUSH_TIMEOUT,string)
     }
 
